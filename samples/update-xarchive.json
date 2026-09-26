@@ -1,0 +1,46 @@
+{
+  "export_metadata": {
+    "tool": "xarchive",
+    "schema_version": 2,
+    "kind": "snapshot",
+    "user_id": "424242",
+    "screen_name": "victor",
+    "exported_at": "2026-09-25T09:00:00.000Z",
+    "collection": { "mode": "quick", "bookmarks": "partial", "folders": "partial", "reason": "quick_boundary" }
+  },
+  "folders": [{ "id": "f-ai", "name": "AI" }],
+  "bookmarks": [
+    {
+      "tweet_id": "1900000000000000001",
+      "status": "unavailable",
+      "unavailable_reason": "Post deleted",
+      "author": { "name": "AI News", "screen_name": "ainews" },
+      "folders": [],
+      "folder_ids": [],
+      "_archive": { "first_seen_at": "2026-09-25T09:00:00.000Z", "last_seen_at": "2026-09-25T09:00:00.000Z" }
+    },
+    {
+      "tweet_id": "1900000000000000002",
+      "status": "available",
+      "created_at": "2026-09-15T09:05:00Z",
+      "full_text": "Cloudflare Durable Objects now support SQLite storage with up to 10GB per object. This changes the calculus for per-tenant databases.",
+      "author": { "name": "Rita Cloud", "screen_name": "ritacloud" },
+      "folders": ["AI"],
+      "folder_ids": ["f-ai"],
+      "_archive": { "first_seen_at": "2026-09-25T09:00:00.000Z", "last_seen_at": "2026-09-25T09:00:00.000Z" }
+    },
+    {
+      "tweet_id": "1900000000000000004",
+      "status": "available",
+      "created_at": "2026-09-24T18:00:00Z",
+      "full_text": "Bun 2.0 lands with a built-in S3 client and a 3x faster test runner. The Node compatibility layer now passes 98% of the test suite.",
+      "author": { "name": "Jarred", "screen_name": "jarredsumner" },
+      "metrics": { "likes": 3100, "retweets": 410, "replies": 150, "views": 700000 },
+      "entities": { "hashtags": ["bun", "javascript"], "mentions": [], "urls": [] },
+      "media": [],
+      "folders": ["AI"],
+      "folder_ids": ["f-ai"],
+      "_archive": { "first_seen_at": "2026-09-25T09:00:00.000Z", "last_seen_at": "2026-09-25T09:00:00.000Z" }
+    }
+  ]
+}

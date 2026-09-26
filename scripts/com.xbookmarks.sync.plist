@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Optional launchd job: a quick bookmark sync every 6 hours.
+
+  Install (from the project directory):
+    sed "s|__PROJECT__|$PWD|g" scripts/com.xbookmarks.sync.plist \
+      > ~/Library/LaunchAgents/com.xbookmarks.sync.plist
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.xbookmarks.sync.plist
+
+  Remove:
+    launchctl bootout gui/$(id -u)/com.xbookmarks.sync
+
+  Run once by hand to check output:
+    launchctl kickstart -k gui/$(id -u)/com.xbookmarks.sync
+  Logs: /tmp/xbookmarks.sync.{out,err}.log
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.xbookmarks.sync</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>__PROJECT__/.venv/bin/python</string>
+        <string>-m</string>
+        <string>xbm.cli</string>
+        <string>sync</string>
+        <string>--mode</string>
+        <string>quick</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>__PROJECT__</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>XB_DATA_DIR</key>
+        <string>__PROJECT__/data</string>
+    </dict>
+
+    <key>StartInterval</key>
+    <integer>21600</integer>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/xbookmarks.sync.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/xbookmarks.sync.err.log</string>
+</dict>
+</plist>
