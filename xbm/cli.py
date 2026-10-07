@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import getpass
 import json
 import sys
 from pathlib import Path
@@ -123,12 +124,12 @@ def cmd_login(args) -> int:
             f"{db.accounts_db_path()}\n"
         )
         try:
-            auth_token = input("auth_token> ")
+            auth_token = getpass.getpass("auth_token> ")
             if _looks_like_cookie_string(auth_token):
                 # The whole cookie string was pasted at the first prompt.
                 cookies = _strip_cookie_prefix(auth_token)
             else:
-                ct0 = input("ct0>        ")
+                ct0 = getpass.getpass("ct0>        ")
                 cookies = _build_cookie_string(auth_token, ct0)
         except (EOFError, KeyboardInterrupt):
             print("\nlogin cancelled", file=sys.stderr)

@@ -46,7 +46,8 @@ uv run xbm search "durable objects"
 
 ### Getting the cookies
 
-By hand, one value at a time (recommended):
+By hand, one value at a time (recommended — the prompt does not echo what you
+type):
 
 ```bash
 uv run xbm login --label main
@@ -68,7 +69,7 @@ unjar x.com -f header | uv run xbm login --label main --stdin
 # two lines on stdin: auth_token first, then ct0
 printf '%s\n%s\n' "$AUTH_TOKEN" "$CT0" | uv run xbm login --label main --stdin
 
-# explicit flags (visible in shell history)
+# explicit flags — avoid: the values land in your shell history and `ps` output
 uv run xbm login --label main --auth-token "$AUTH_TOKEN" --ct0 "$CT0"
 
 # from a file
@@ -262,10 +263,10 @@ Already added to `~/.config/opencode/opencode.json`:
   "servers": {
     "x-bookmarks": {
       "type": "local",
-      "command": ["/Users/victoravila/Desktop/Avila Studios/opencode-plugins/x-bookmarks/.venv/bin/python",
+      "command": ["/absolute/path/to/x-bookmarks/.venv/bin/python",
                   "-m", "xbm.mcp_server"],
-      "cwd": "/Users/victoravila/Desktop/Avila Studios/opencode-plugins/x-bookmarks",
-      "environment": { "XB_DATA_DIR": "/Users/victoravila/Desktop/Avila Studios/opencode-plugins/x-bookmarks/data" }
+      "cwd": "/absolute/path/to/x-bookmarks",
+      "environment": { "XB_DATA_DIR": "/absolute/path/to/x-bookmarks/data" }
     }
   }
 }

@@ -55,6 +55,7 @@ async def list_accounts() -> list[dict]:
     from twscrape import API
 
     api = API(str(db.accounts_db_path()))
+    db.secure_accounts_file()
     accounts = await api.pool.get_all()
     return [
         {
@@ -72,6 +73,7 @@ async def add_cookie(label: str, cookies: str) -> None:
     from twscrape import API
 
     api = API(str(db.accounts_db_path()))
+    db.secure_accounts_file()
     try:
         await api.pool.add_account_cookies(label, cookies)
     except ValueError as exc:
@@ -99,6 +101,7 @@ async def _run(
         wait_timeout=15,
         wait_interval=1,
     )
+    db.secure_accounts_file()
 
     accounts = await api.pool.get_all()
     if not accounts:

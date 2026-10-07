@@ -169,6 +169,23 @@ def accounts_db_path() -> Path:
     return Path(raw).expanduser() if raw else data_dir() / "accounts.db"
 
 
+def secure_accounts_file() -> None:
+    """Best-effort 0o600 on the twscrape account store.
+
+    The file holds the ``auth_token``/``ct0`` session cookies. twscrape creates
+    it with the default umask (often world-readable), so tighten it whenever we
+    touch the store, including its SQLite sidecar files.
+    """
+    base = accounts_db_path()
+    for suffix in ("", "-wal", "-shm"):
+        candidate = Path(f"{base}{suffix}")
+        if candidate.exists():
+            try:
+                os.chmod(candidate, 0o600)
+            except OSError:
+                pass
+
+
 def connect(path: Path | None = None) -> sqlite3.Connection:
     conn = sqlite3.connect(str(path or db_path()))
     conn.row_factory = sqlite3.Row
